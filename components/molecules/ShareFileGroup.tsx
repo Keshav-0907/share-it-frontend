@@ -64,7 +64,11 @@ const ShareFileGroup = ({ code }: { code: string }) => {
             </div>
             
             <div className='bg-white p-4 rounded-lg shadow-sm border relative'>
-                <Image src={qrCode} alt="QR Code" width={200} height={200} className='rounded-md' />
+                {
+                    qrCode && (
+                        <Image src={qrCode} alt="QR Code" width={200} height={200} className='rounded-md' />
+                    )
+                }
                 <button 
                     onClick={downloadQRCode}
                     className='absolute top-2 right-2 bg-black/70 hover:bg-black/90 text-white p-2 rounded-md transition-colors'

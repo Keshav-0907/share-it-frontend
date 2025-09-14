@@ -16,3 +16,9 @@ export interface File {
     };
     createdAt: string;
 }
+
+export interface FileGroup {
+    _id: string;
+    files: File[];
+    createdAt: string;
+}

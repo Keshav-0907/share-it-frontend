@@ -8,6 +8,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import Link from "next/link";
 
 
 const UserDropDown = ({ user, logoutUser }: { user: User, logoutUser: () => void }) => {
@@ -24,7 +25,9 @@ const UserDropDown = ({ user, logoutUser }: { user: User, logoutUser: () => void
                     {user.name}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem className="cursor-pointer">Subscription</DropdownMenuItem>
+                <DropdownMenuItem className="cursor-pointer">
+                    <Link href="/profile">Profile</Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem className="cursor-pointer" onClick={logoutUser}>Log Out</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>

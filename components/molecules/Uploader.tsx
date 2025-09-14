@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 
 const Uploader = () => {
   const [files, setFiles] = useState<File[]>([]);
-  const [expireFleAfter, setExpireFleAfter] = useState("3hrs");
+  const [expiresAfter, setExpiresAfter] = useState(3);
   const { user } = useAuth();
   const router = useRouter();
 
@@ -30,7 +30,10 @@ const Uploader = () => {
         formData.append('files', file);
       });
 
-      formData.append('expireAfter', expireFleAfter);
+      formData.append('expiresAfter', String(expiresAfter));
+      if (user) {
+        formData.append('userId', user?._id || '');
+      }
 
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-group/create`, formData);
 
@@ -44,7 +47,7 @@ const Uploader = () => {
         // Store file group in localStorage
         const fileGroupId = response.data.fileGroup._id;
         const existingData = localStorage.getItem('shareIt');
-        
+
         if (existingData) {
           const parsedData = JSON.parse(existingData);
           if (!parsedData.file_groups.includes(fileGroupId)) {
@@ -78,7 +81,7 @@ const Uploader = () => {
 
       {
         files.length > 0 && (
-          <UploadActions setExpireFleAfter={setExpireFleAfter} expireFleAfter={expireFleAfter} handleUpload={handleUpload} />
+          <UploadActions setExpireAfter={setExpiresAfter} expireAfter={expiresAfter} handleUpload={handleUpload} />
         )
       }
 

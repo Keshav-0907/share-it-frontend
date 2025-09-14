@@ -17,12 +17,14 @@ const DownloadFile = () => {
     const [files, setFiles] = useState<File[]>([]);
     const [selectedFiles, setSelectedFiles] = useState<string[]>([]);
     const [isOwner, setIsOwner] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(0);
 
     useEffect(() => {
         const getFiles = async () => {
-            const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/file-group/get/${code}`);
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/file-group/get/${code}`);
             if (res.data.success) {
                 setFiles(res.data.fileGroup);
+                setTimeLeft(res.data.timeLeft);
 
                 const existingData = localStorage.getItem('shareIt');
                 if (existingData) {
@@ -82,7 +84,7 @@ const DownloadFile = () => {
                         Download Files
                     </div>
                     <div className="text-sm text-neutral-500 dark:text-neutral-400">
-                        The Files will be expired in 10
+                        The Files will be expired in {timeLeft.toFixed(0)} hours
                     </div>
                 </div>
                 <div className="text-xs text-neutral-500 dark:text-neutral-400 flex items-center gap-1">

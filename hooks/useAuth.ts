@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 const useAuth = () => {
     const [user, setUser] = useState<User | null>(null);
     const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
 
     const getAuthHeaders = () => {
         const token = cookie.get('authToken');
@@ -15,6 +16,7 @@ const useAuth = () => {
     };
 
     const signupUser = async (name: string, email: string, password: string) => {
+        setIsLoading(true);
         const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/create`, { name, email, password })
         console.log(res.status)
         if (res.status === 201) {
@@ -23,10 +25,12 @@ const useAuth = () => {
             return res.data;
         }
         return res.data;
+        setIsLoading(false);
     }
 
     const loginUser = async (email: string, password: string) => {
         try {
+            setIsLoading(true);
             const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, { email, password });
             if (res.status === 200) {
                 setUser(res.data.user);
@@ -38,9 +42,11 @@ const useAuth = () => {
             console.error('Login error:', error);
             throw error;
         }
+        setIsLoading(false);
     }
 
     const getUser = async () => {
+        setIsLoading(true);
         try {
             const headers = getAuthHeaders();
             const res = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/get`, { headers });
@@ -54,16 +60,19 @@ const useAuth = () => {
                 setUser(null);
                 return null;
             }
-            console.error('Error fetching user:', error);
+            console.log('Error fetching user:', error);
             setUser(null);
             return null;
         }
+        setIsLoading(false);
     }
 
     const logoutUser = async () => {
+        setIsLoading(true);
         cookie.remove('authToken');
         setUser(null);
         router.push('/');
+        setIsLoading(false);
     }
 
     useEffect(() => {
@@ -76,7 +85,8 @@ const useAuth = () => {
         loginUser,
         getUser,
         getAuthHeaders,
-        logoutUser
+        logoutUser,
+        isLoading
     }
 }
 

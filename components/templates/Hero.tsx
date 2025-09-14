@@ -16,8 +16,8 @@ const Hero = () => {
               </span>
             </h1>
             
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              The Fastest Way to Share Files, Securely.
+            <p className="text-md text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              The Fastest Way to temporarily Share Files, Securely
             </p>
           </div>
         </div>
