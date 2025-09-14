@@ -4,6 +4,7 @@ import AuthModal from "./AuthModal";
 import { useState } from "react";
 import useAuth from "@/hooks/useAuth";
 import UserDropDown from "../atoms/UserDropDown";
+import Link from "next/link";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,10 +14,10 @@ const Header = () => {
 
   return (
     <div className="flex justify-between items-center py-4 px-10">
-      <div className="flex gap-1 items-center cursor-pointer">
+      <Link href={'/'} className="flex gap-1 items-center cursor-pointer">
         <SquaresExclude size={18} />
         <div className="font-medium">Share It</div>
-      </div>
+      </Link>
 
       <div className="flex gap-4 items-center">
         <div className="text-sm flex gap-4">
