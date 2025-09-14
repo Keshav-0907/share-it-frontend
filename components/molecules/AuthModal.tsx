@@ -1,12 +1,11 @@
 import { X } from 'lucide-react';
-import Image from 'next/image';
 import { useState } from 'react';
 import { Input } from '../ui/input';
 import toast from 'react-hot-toast';
 import useAuth from '@/hooks/useAuth';
 import { validateEmail, validatePassword } from '@/lib/helperFunctions';
 
-const AuthModal = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (isOpen: boolean) => void }) => {
+const AuthModal = ({ setIsOpen }: { setIsOpen: (isOpen: boolean) => void }) => {
     const [mode, setMode] = useState<'signin' | 'signup'>('signin');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -31,6 +30,7 @@ const AuthModal = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (isOpen:
                 setIsOpen(false);
             }
         } catch (error) {
+            console.log(error);
             toast.error('Sign in failed. Please check your credentials.');
         }
     }
@@ -149,7 +149,7 @@ const AuthModal = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (isOpen:
                         {
                             mode === 'signin' ? (
                                 <div className='text-xs text-muted-foreground'>
-                                    Don't have an account? <span className='text-[#40AB74] cursor-pointer' onClick={() => setMode('signup')}>Sign up</span>
+                                    Don&apos;t have an account? <span className='text-[#40AB74] cursor-pointer' onClick={() => setMode('signup')}>Sign up</span>
                                 </div>
                             ) : (
                                 <div className='text-xs text-muted-foreground'>

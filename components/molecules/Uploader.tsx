@@ -1,8 +1,6 @@
 'use client'
-import { motion } from "motion/react";
 import { FileUpload } from "../ui/file-upload";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
 import UploadedFiles from "../atoms/UploadedFiles";
 import UploadActions from "./UploadActions";
 import useAuth from "@/hooks/useAuth";
@@ -77,7 +75,7 @@ const Uploader = () => {
   return (
     <div className="max-w-3xl w-full space-y-4">
 
-      <FileUpload files={files} setFiles={setFiles} />
+      <FileUpload setFiles={setFiles} />
 
       {
         files.length > 0 && (

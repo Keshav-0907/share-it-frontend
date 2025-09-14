@@ -2,7 +2,6 @@
 import QRCode from 'qrcode'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { Copy, Download } from 'lucide-react'
 import toast from 'react-hot-toast'
@@ -11,6 +10,8 @@ const ShareFileGroup = ({ code }: { code: string }) => {
 
     const [qrCode, setQrCode] = useState<string>('')
     const [copied, setCopied] = useState(false)
+
+    console.log('copied', copied)
 
     const fullUrl = `${typeof window !== 'undefined' ? window.location.origin : process.env.NEXT_PUBLIC_APP_URL}/files/${code}`
 

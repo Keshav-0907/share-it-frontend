@@ -1,6 +1,5 @@
-import Header from "@/components/molecules/Header";
+
 import Uploader from "@/components/molecules/Uploader";
-import Image from "next/image";
 import Hero from "@/components/templates/Hero";
 import DownloadFiles from "@/components/molecules/DownloadFiles";
 

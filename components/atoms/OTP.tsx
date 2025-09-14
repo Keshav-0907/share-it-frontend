@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 
 const OTP = ({ onComplete, length = 4, otp, setOtp }: { onComplete: (otp: string) => void, length: number, otp: string[], setOtp: (otp: string[]) => void }) => {
     

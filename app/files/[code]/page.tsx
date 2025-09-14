@@ -8,7 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "react-hot-toast";
 import { downloadFile } from "@/lib/helperFunctions";
 import ShareFileGroup from "@/components/molecules/ShareFileGroup";
-import { Info, Lock } from "lucide-react";
+import { Info } from "lucide-react";
 
 
 

@@ -38,14 +38,7 @@ const Files = () => {
     const toggleQRScanner = () => {
         setShowQRScanner(!showQRScanner);
     };
-
-    const handleQRScan = (scannedCode: string) => {
-        if (scannedCode && scannedCode.length === 4) {
-            setOtpCode(scannedCode);
-            setShowQRScanner(false);
-        }
-    };
-
+    
     return (
         <div className="min-h-[calc(100vh-67px)] flex items-center justify-center p-4">
             <div className="w-full max-w-md mx-auto">

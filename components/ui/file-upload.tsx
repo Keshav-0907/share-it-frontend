@@ -1,6 +1,6 @@
 'use client'
 import { cn } from "@/lib/utils";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { motion } from "motion/react";
 import { IconUpload } from "@tabler/icons-react";
 import { useDropzone } from "react-dropzone";
@@ -17,21 +17,10 @@ const mainVariant = {
   },
 };
 
-const secondaryVariant = {
-  initial: {
-    opacity: 0,
-  },
-  animate: {
-    opacity: 1,
-  },
-};
-
 export const FileUpload = ({
   onChange,
-  files,
   setFiles,
 }: {
-  files: File[];
   setFiles: React.Dispatch<React.SetStateAction<File[]>>;
   onChange?: (files: File[]) => void;
 }) => {

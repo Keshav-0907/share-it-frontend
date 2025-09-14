@@ -1,4 +1,3 @@
-import { ArrowRightIcon } from "lucide-react"
 import Link from "next/link"
 
 const DownloadFiles = () => {

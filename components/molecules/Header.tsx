@@ -38,7 +38,7 @@ const Header = () => {
         }
       </div>
 
-      {isOpen && <AuthModal isOpen={isOpen} setIsOpen={setIsOpen} />}
+      {isOpen && <AuthModal setIsOpen={setIsOpen} />}
     </div>
   );
 };

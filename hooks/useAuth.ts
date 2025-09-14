@@ -17,15 +17,18 @@ const useAuth = () => {
 
     const signupUser = async (name: string, email: string, password: string) => {
         setIsLoading(true);
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/create`, { name, email, password })
-        console.log(res.status)
-        if (res.status === 201) {
-            setUser(res.data.user);
-            cookie.set('authToken', res.data.token);
+        try {
+            const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/create`, { name, email, password })
+            console.log(res.status)
+            if (res.status === 201) {
+                setUser(res.data.user);
+                cookie.set('authToken', res.data.token);
+                return res.data;
+            }
             return res.data;
+        } finally {
+            setIsLoading(false);
         }
-        return res.data;
-        setIsLoading(false);
     }
 
     const loginUser = async (email: string, password: string) => {
@@ -41,8 +44,9 @@ const useAuth = () => {
         } catch (error) {
             console.error('Login error:', error);
             throw error;
+        } finally {
+            setIsLoading(false);
         }
-        setIsLoading(false);
     }
 
     const getUser = async () => {
@@ -63,8 +67,9 @@ const useAuth = () => {
             console.log('Error fetching user:', error);
             setUser(null);
             return null;
+        } finally {
+            setIsLoading(false);
         }
-        setIsLoading(false);
     }
 
     const logoutUser = async () => {

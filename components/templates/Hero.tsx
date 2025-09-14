@@ -1,5 +1,3 @@
-import { Button } from "../ui/button";
-
 const Hero = () => {
   return (
     <div className="relative flex items-center justify-center ">
